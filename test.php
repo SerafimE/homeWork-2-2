@@ -49,7 +49,7 @@ if (count($_POST) > 0) {
     <fieldset>
         <legend><?php echo $question[0] ?></legend>
         <?php foreach ($answers[0] as $key => $item) { ?>
-            <label><input type="radio" name="<?php echo $key; ?>"
+            <label><input type="checkbox" name="<?php echo $key; ?>"
                           value="<?php echo $item['answer'][0]; ?>"> <?php echo $item['answer'][0]; ?>
             </label>
         <?php } ?>
@@ -57,7 +57,7 @@ if (count($_POST) > 0) {
     <fieldset>
         <legend><?php echo $question[1] ?></legend>
         <?php foreach ($answers[0] as $key1 => $item1) { ?>
-            <label><input type="radio" name="<?php echo $key1; ?>"
+            <label><input type="checkbox" name="<?php echo $key1; ?>"
                           value="<?php echo $item1['answer'][1]; ?>"> <?php echo $item1['answer'][1]; ?>
             </label>
         <?php } ?>
