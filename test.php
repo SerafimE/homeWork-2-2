@@ -3,8 +3,7 @@ $allTests = glob(__DIR__ . './upload/*.json');
 $number = implode($_GET);
 $test = file_get_contents($number);
 $testDecode = json_decode($test, true);
-var_dump($testDecode);
-
+$correctAnswer = [];
 ?>
 <!doctype html>
 <html lang="ru">
@@ -18,15 +17,22 @@ var_dump($testDecode);
         <fieldset><?php $question = $value['question'];
             echo $question . '<br>';
             $answers = $value['answers'];
-            $correctAnswer = $value['correctAnswer'];
+            $correctAnswer[] = $value['correctAnswer'];
             foreach ($answers as $item) { ?>
-                <label><input type="checkbox" name="checkBox" value="check"><?php echo $item . '<br>' ?></label>
+                <label><input type="checkbox" name="<?php echo $key ?>"
+                              value="<?php echo $item ?>"><?php echo $item . '<br>' ?></label>
             <?php } ?>
         </fieldset>
     <?php } ?>
-    <?php var_dump($_POST) ?>
-    <label><input type="text" name="name" placeholder="Ваше имя">Введите Ваше имя</label>
-    <input type="submit" name="checkTest" value="Отправить">
+    <?php
+
+    if ($_POST == $correctAnswer) {
+        echo '<h2 style="color:#17A05D">Правильно!</h2>';
+    } elseif ($_POST == null) {
+        echo '<h2 style="color:#4C8BF5">Выберите правильные варианты</h2>';
+    } else echo '<h2 style="color:#DE5347">Один или несколько ответов не верны. Ещё раз?</h2>';
+    ?>
+    <input type="submit" value="Отправить">
 </form>
 
 <ul>
