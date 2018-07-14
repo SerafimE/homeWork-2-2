@@ -1,5 +1,7 @@
-<?php
-$fileList = glob('uploads/*.json');
+<?php declare(strict_types=1);
+foreach (glob('./upload/*.json') as $file) {
+    echo "<a href=\"test.php?test=$file\">Тест: $file</a><br>";
+}
 ?>
 <!doctype html>
 <html lang="ru">
@@ -8,16 +10,6 @@ $fileList = glob('uploads/*.json');
     <title>Список тестов</title>
 </head>
 <body>
-
-<?php
-foreach ($fileList as $key => $file) {
-    $fileTest = file_get_contents($file);
-    $decodeFile = json_decode($fileTest, true);
-    foreach ($decodeFile as $test) {
-        echo "<a href=\"test.php?test=$key\">Тест</a><br>";
-    }
-}
-?>
 
 <ul>
     <li><a href="admin.php">Загрузить тест</a></li>
